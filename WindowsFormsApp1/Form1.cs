@@ -50,7 +50,6 @@ namespace WindowsFormsApp1
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
             public string Link_product;
-
         }
 
         [DllImport(@"C:\Users\user\Documents\GitHub\c#_lab6\WindowsFormsApp1\x64\Debug\DLL_Smirnova.dll", CharSet = CharSet.Ansi)]
