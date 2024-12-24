@@ -51,7 +51,7 @@
             // 
             // text_valid_until_day
             // 
-            this.text_valid_until_day.Location = new System.Drawing.Point(452, 228);
+            this.text_valid_until_day.Location = new System.Drawing.Point(277, 228);
             this.text_valid_until_day.Name = "text_valid_until_day";
             this.text_valid_until_day.Size = new System.Drawing.Size(67, 22);
             this.text_valid_until_day.TabIndex = 38;
@@ -65,7 +65,7 @@
             // 
             // text_manufacture_day
             // 
-            this.text_manufacture_day.Location = new System.Drawing.Point(452, 179);
+            this.text_manufacture_day.Location = new System.Drawing.Point(277, 179);
             this.text_manufacture_day.Name = "text_manufacture_day";
             this.text_manufacture_day.Size = new System.Drawing.Size(67, 22);
             this.text_manufacture_day.TabIndex = 36;
@@ -111,7 +111,7 @@
             // 
             // text_valid_until_year
             // 
-            this.text_valid_until_year.Location = new System.Drawing.Point(277, 226);
+            this.text_valid_until_year.Location = new System.Drawing.Point(452, 228);
             this.text_valid_until_year.Name = "text_valid_until_year";
             this.text_valid_until_year.Size = new System.Drawing.Size(67, 22);
             this.text_valid_until_year.TabIndex = 30;
@@ -121,13 +121,13 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(279, 204);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 16);
+            this.label4.Size = new System.Drawing.Size(140, 16);
             this.label4.TabIndex = 29;
-            this.label4.Text = "Годен до";
+            this.label4.Text = "Годен до (дд.мм.гггг)";
             // 
             // text_manufacture_year
             // 
-            this.text_manufacture_year.Location = new System.Drawing.Point(277, 179);
+            this.text_manufacture_year.Location = new System.Drawing.Point(452, 179);
             this.text_manufacture_year.Name = "text_manufacture_year";
             this.text_manufacture_year.Size = new System.Drawing.Size(67, 22);
             this.text_manufacture_year.TabIndex = 28;
@@ -137,9 +137,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(277, 156);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 16);
+            this.label3.Size = new System.Drawing.Size(208, 16);
             this.label3.TabIndex = 27;
-            this.label3.Text = "Дата производства";
+            this.label3.Text = "Дата производства(дд.мм.гггг)";
             // 
             // text_price
             // 

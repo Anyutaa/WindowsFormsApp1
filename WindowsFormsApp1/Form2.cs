@@ -71,27 +71,116 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(text_name.Text) ||
+                string.IsNullOrEmpty(text_price.Text) ||
+                string.IsNullOrEmpty(text_manufacture_year.Text) ||
+                string.IsNullOrEmpty(text_manufacture_month.Text) ||
+                string.IsNullOrEmpty(text_manufacture_day.Text) ||
+                string.IsNullOrEmpty(text_valid_until_year.Text) ||
+                string.IsNullOrEmpty(text_valid_until_month.Text) ||
+                string.IsNullOrEmpty(text_valid_until_day.Text) ||
+                string.IsNullOrEmpty(text_quantity.Text))
+            {
+                MessageBox.Show("Пожалуйста, заполните все поля.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!double.TryParse(text_price.Text, out double price) || price <= 0)
+            {
+                MessageBox.Show("Цена должна быть положительным числом больше 0.", "Некорректные данные", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!int.TryParse(text_manufacture_year.Text, out int manufactureYear) ||
+                !int.TryParse(text_manufacture_month.Text, out int manufactureMonth) ||
+                !int.TryParse(text_manufacture_day.Text, out int manufactureDay))
+            {
+                MessageBox.Show("Дата производства должна быть введена корректно.", "Некорректные данные", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!int.TryParse(text_valid_until_year.Text, out int validUntilYear) ||
+                !int.TryParse(text_valid_until_month.Text, out int validUntilMonth) ||
+                !int.TryParse(text_valid_until_day.Text, out int validUntilDay))
+            {
+                MessageBox.Show("Дата срока годности должна быть введена корректно.", "Некорректные данные", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!int.TryParse(text_quantity.Text, out int quantity) || quantity <= 0)
+            {
+                MessageBox.Show("Количество должно быть положительным целым числом больше 0.", "Некорректные данные", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Проверка на корректность значений даты производства
+            if (manufactureMonth < 1 || manufactureMonth > 12)
+            {
+                MessageBox.Show("Месяц производства должен быть в диапазоне от 1 до 12.", "Некорректные данные", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (manufactureYear < 1999 || manufactureYear > 2024)
+            {
+                MessageBox.Show("Год производства должен быть в диапазоне от 1999 до 2024 включительно.", "Некорректные данные", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (manufactureDay < 1 || manufactureDay > DateTime.DaysInMonth(manufactureYear, manufactureMonth))
+            {
+                MessageBox.Show("День производства введён некорректно.", "Некорректные данные", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DateTime manufactureDate = new DateTime(manufactureYear, manufactureMonth, manufactureDay);
+            if (manufactureDate > DateTime.Today)
+            {
+                MessageBox.Show("Дата производства не может быть позже сегодняшнего дня.", "Некорректные данные", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (validUntilMonth < 1 || validUntilMonth > 12)
+            {
+                MessageBox.Show("Месяц срока годности должен быть в диапазоне от 1 до 12.", "Некорректные данные", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (validUntilDay < 1 || validUntilDay > DateTime.DaysInMonth(validUntilYear, validUntilMonth))
+            {
+                MessageBox.Show("День срока годности введён некорректно.", "Некорректные данные", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DateTime validUntilDate = new DateTime(validUntilYear, validUntilMonth, validUntilDay);
+            if (validUntilDate <= manufactureDate)
+            {
+                MessageBox.Show("Дата срока годности должна быть позже даты производства.", "Некорректные данные", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var edit_product = new Product();
             GetProduct(ref edit_product, param);
+
             edit_product.Name_product = text_name.Text;
-            edit_product.Price = Convert.ToDouble(text_price.Text);
-            edit_product.ManufactureYear = Convert.ToInt32(text_manufacture_year.Text);
-            edit_product.ManufactureMonth = Convert.ToInt32(text_manufacture_month.Text);
-            edit_product.ManufactureDay = Convert.ToInt32(text_manufacture_day.Text);
-            edit_product.ValidUntilYear = Convert.ToInt32(text_valid_until_year.Text);
-            edit_product.ValidUntilMonth = Convert.ToInt32(text_valid_until_month.Text);
-            edit_product.ValidUntilDay = Convert.ToInt32(text_valid_until_day.Text);
-            edit_product.Quantity = Convert.ToInt32(text_quantity.Text);
+            edit_product.Price = price;
+            edit_product.ManufactureYear = manufactureYear;
+            edit_product.ManufactureMonth = manufactureMonth;
+            edit_product.ManufactureDay = manufactureDay;
+            edit_product.ValidUntilYear = validUntilYear;
+            edit_product.ValidUntilMonth = validUntilMonth;
+            edit_product.ValidUntilDay = validUntilDay;
+            edit_product.Quantity = quantity;
+
             if (param_edit_or_add == 2)
             {
                 if (string.IsNullOrEmpty(text_link.Text))
                 {
-                    MessageBox.Show("У онлайн продукта должна быть ссылка.", "Некорректные данные", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("У онлайн продукта должна быть ссылка.", "Некорректные данные", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 edit_product.Link_product = text_link.Text;
             }
+
             UpdateProduct(ref edit_product, param);
             this.Close();
         }

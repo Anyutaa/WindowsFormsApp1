@@ -57,4 +57,3 @@ public:
 	virtual ~Product() = default;
 
 };
-

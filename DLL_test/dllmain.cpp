@@ -15,11 +15,11 @@ struct product_struct {
 };
 
 extern "C" {
-    __declspec(dllexport) void __stdcall Load(const char* filename) {
+    __declspec(dllexport) void Load(const char* filename) {
         myshop.Writing_to_file_product(filename);
     }
 
-    __declspec(dllexport) void __stdcall Save(const char* filename) {
+    __declspec(dllexport) void Save(const char* filename) {
         myshop.Read_from_file_product(filename);
     }
 

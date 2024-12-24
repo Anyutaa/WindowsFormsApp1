@@ -112,36 +112,35 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(469, 104);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 16);
+            this.label3.Size = new System.Drawing.Size(211, 16);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Дата производства";
+            this.label3.Text = "Дата производства (дд.мм.гггг)";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // text_manufacture_year
             // 
             this.text_manufacture_year.Enabled = false;
-            this.text_manufacture_year.Location = new System.Drawing.Point(469, 127);
+            this.text_manufacture_year.Location = new System.Drawing.Point(644, 123);
             this.text_manufacture_year.Name = "text_manufacture_year";
             this.text_manufacture_year.Size = new System.Drawing.Size(67, 22);
             this.text_manufacture_year.TabIndex = 7;
-            
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(471, 152);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 16);
+            this.label4.Size = new System.Drawing.Size(140, 16);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Годен до";
+            this.label4.Text = "Годен до (дд.мм.гггг)";
             // 
             // text_valid_until_year
             // 
             this.text_valid_until_year.Enabled = false;
-            this.text_valid_until_year.Location = new System.Drawing.Point(469, 174);
+            this.text_valid_until_year.Location = new System.Drawing.Point(644, 176);
             this.text_valid_until_year.Name = "text_valid_until_year";
             this.text_valid_until_year.Size = new System.Drawing.Size(67, 22);
             this.text_valid_until_year.TabIndex = 9;
-            
             // 
             // label5
             // 
@@ -218,7 +217,7 @@
             // text_manufacture_day
             // 
             this.text_manufacture_day.Enabled = false;
-            this.text_manufacture_day.Location = new System.Drawing.Point(644, 127);
+            this.text_manufacture_day.Location = new System.Drawing.Point(472, 127);
             this.text_manufacture_day.Name = "text_manufacture_day";
             this.text_manufacture_day.Size = new System.Drawing.Size(67, 22);
             this.text_manufacture_day.TabIndex = 20;
@@ -234,7 +233,7 @@
             // text_valid_until_day
             // 
             this.text_valid_until_day.Enabled = false;
-            this.text_valid_until_day.Location = new System.Drawing.Point(644, 176);
+            this.text_valid_until_day.Location = new System.Drawing.Point(469, 176);
             this.text_valid_until_day.Name = "text_valid_until_day";
             this.text_valid_until_day.Size = new System.Drawing.Size(67, 22);
             this.text_valid_until_day.TabIndex = 22;

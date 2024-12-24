@@ -111,6 +111,11 @@ namespace WindowsFormsApp1
 
         private void delete_button_Click(object sender, EventArgs e)
         {
+            if (listBox1.Items.Count == 0)
+            {
+                MessageBox.Show("Нет продуктов для удаления.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (listBox1.SelectedIndex == -1)
             {
                 MessageBox.Show("Выберите продукт для удаления.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -176,19 +181,35 @@ namespace WindowsFormsApp1
             Form2 newForm = new Form2(selected,1);
             newForm.ShowDialog();
             UpdateListBox();
+            listBox1.SelectedIndex = selected;
 
 
         }
 
         private void edit_button_Click(object sender, EventArgs e)
         {
-            
             int selected = listBox1.SelectedIndex;
-            Form2 newForm = new Form2(selected,0);
+
+            if (listBox1.Items.Count == 0)
+            {
+                MessageBox.Show("Нет продуктов для редактирования.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (selected == -1)
+            {
+                MessageBox.Show("Пожалуйста, выберите элемент для редактирования.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Form2 newForm = new Form2(selected, 0);
             newForm.ShowDialog();
             UpdateListBox();
+            listBox1.SelectedIndex = selected;
 
         }
+
+
 
         private void add_button_2_Click(object sender, EventArgs e)
         {
@@ -197,10 +218,17 @@ namespace WindowsFormsApp1
             Form2 newForm = new Form2(selected,2);
             newForm.ShowDialog();
             UpdateListBox();
+            listBox1.SelectedIndex = selected;
         }
 
         private void save_button_Click(object sender, EventArgs e)
         {
+            if (listBox1.Items.Count == 0) 
+            {
+                MessageBox.Show("Нет данных для сохранения.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
 
@@ -208,8 +236,13 @@ namespace WindowsFormsApp1
             {
                 string filename = saveFileDialog.FileName;
                 Save(filename);
+                MessageBox.Show("Данные успешно сохранены.", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
